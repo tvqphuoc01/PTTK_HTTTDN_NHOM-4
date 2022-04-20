@@ -1,0 +1,115 @@
+doctype html
+html(lang="en") 
+    head
+        title TIEM CHUNG AN BINH
+
+        // Required meta tags
+        meta(charset="utf-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+        // Boostrap & CSS
+        link(rel="stylesheet" href="indexStyle.css" )
+        link(rel="stylesheet" href="StaffReservation.css")
+        link(rel='stylesheet' href='staffDashboard.css')
+        link(rel='stylesheet' href='admin.css')
+        link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous")
+        link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.8.2/css/all.css' integrity='sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay' crossorigin='anonymous')
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
+        script(src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous")
+        script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous")
+        link(rel="preconnect" href="https://fonts.gstatic.com")
+        link(href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet")
+        link(href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet")
+
+        // The core Firebase JS SDK is always required and must be listed first
+        <script src="https://www.gstatic.com/firebasejs/8.6.4/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.4/firebase-firestore.js"></script>
+        // TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/8.6.4/firebase-analytics.js"></script>
+        <script src="app.js"></script>
+        <script src="admin.js"></script>
+
+    body
+        .container-fluid.row.mainNavBar.fixed-top.w-100.navbar-expand-lg
+            //Navbar
+            .col-2.d-flex.justify-content-center
+                a(href="#")
+                    img(src="logo.png" alt="AN BINH logo" width="50" height="50")
+            .col-7.d-flex.justify-content-center
+                h1 HỆ THỐNG TIÊM CHỦNG AN BÌNH
+            .col-3.d-flex.justify-content-center
+                ul(id="nav-list").nav.align-items-center
+                    if user
+                        li.nav-item.dropdown
+                            a(class="contact" href="#")= user.userName
+                            div(class="dropdown-content")
+                                a(class="dropdown-item" href="/logOut") ĐĂNG XUẤT
+                    else
+                        li.nav-item
+                            a(class="contact" href="/logIn") ĐĂNG NHẬP
+                        li.nav-item
+                            a(class="contact" href="/signUp") ĐĂNG KÝ      
+                div.col-12(id="search-bar")
+                    i(class="fas fa-search fa-lg" onclick="myFunction()")
+                    input(type="text" id="searchBar" placeholder="Search Here ..... !")
+                    div(id="search_List")
+                        ul(id="dishesList")
+
+        //Tab
+        .container.mt-5.d-flex.justify-content-center
+            a(href="#")
+                img(src="logo.png" alt="AN BINH logo" width="400" height="400")
+        .container.mt-5.w-75.d-flex.justify-content-center
+            div.w-75.mb-5
+                .mt-3.mb-3
+                    a(href="/dangkytiemchung")
+                        <button type="button" class="btn btn-primary btn-block">ĐĂNG KÝ TIÊM CHỦNG</button>
+                .mt-3.mb-3
+                    a(href="/dangkymuavaccine")
+                        <button type="button" class="btn btn-primary btn-block">ĐĂNG KÝ MUA VACCINE</button>
+                .mt-3.mb-3
+                    a(href="/danhsachvaccine")
+                        <button type="button" class="btn btn-primary btn-block">DANH SÁCH VACCINE</button>
+        //Footer
+        .footer
+            .container-fluid.row 
+                .col-6
+                    h4 TIÊM CHỦNG AN BÌNH
+                    .title-line 
+                    p Pellentesque mi purus, eleifend sedt commodo vel, sagittis elts vestibulum dui sagittis mlste sagittis elts.
+                    ul.address-info 
+                        li
+                            <i class="fas fa-map-marker-alt"></i>   15 Barnes Wallis Way, 358744, USA
+                        li 
+                            <i class="fas fa-phone"></i>    +1 (012) 345 6789 
+                        li
+                            <i class="fas fa-envelope"></i>   info@yourdomain.com
+                .col-6 
+                    h4 Twitter Feed!
+                    .title-line 
+                    ul.customer-sp
+                        li 
+                            <i class="fas fa-angle-right"></i> 
+                                a(href="#") Customer Support
+                        li 
+                            <i class="fas fa-angle-right"></i> 
+                                a(href="#") Documentation
+                        li 
+                            <i class="fas fa-angle-right"></i> 
+                                a(href="#") Developer Center
+                        li 
+                            <i class="fas fa-angle-right"></i> 
+                                a(href="/FAQs") General FAQs
+        .container-fluid.Copyright.row
+            .col-6.copyRight-title
+                h5 Copyright © 2022 NHOM-4 ON THE MIC. All rights reserved.
+            .col-6
+                ul.social-list 
+                    li.social-app
+                        <i class="fab fa-facebook-square fa-3x"></i>
+                    li.social-app
+                        <i class="fab fa-instagram fa-3x"></i>
+                    li.social-app
+                        <i class="fab fa-youtube fa-3x"></i>
+                    li.social-app
+                        <i class="fab fa-twitter-square fa-3x"></i>

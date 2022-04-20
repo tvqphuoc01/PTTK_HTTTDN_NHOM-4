@@ -1,0 +1,32 @@
+{
+  "name": "pttk_htttdn_nhom-4",
+  "version": "1.0.0",
+  "description": "ĐỒ ÁN PTTK HTTT",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tvqphuoc01/PTTK_HTTTDN_NHOM-4.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tvqphuoc01/PTTK_HTTTDN_NHOM-4/issues"
+  },
+  "homepage": "https://github.com/tvqphuoc01/PTTK_HTTTDN_NHOM-4#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "express": "^4.17.3",
+    "mongodb": "^4.5.0",
+    "mongoose": "^6.3.0",
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.13.0",
+    "eslint-config-google": "^0.14.0",
+    "nodemon": "^2.0.15"
+  }
+}
