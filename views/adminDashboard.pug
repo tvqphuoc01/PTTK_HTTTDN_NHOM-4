@@ -1,7 +1,7 @@
 doctype html
 html(lang="en") 
     head
-        title TIEM CHUNG AN BINH
+        title TIEM CHUNG AN BINH ADMIN
 
         // Required meta tags
         meta(charset="utf-8")
@@ -33,29 +33,17 @@ html(lang="en")
         .container-fluid.row.mainNavBar.fixed-top.w-100.navbar-expand-lg
             //Navbar
             .col-2.d-flex.justify-content-center
-                a(href="#")
+                a(href="/adminDashboard")
                     img(src="logo.png" alt="AN BINH logo" width="50" height="50")
             .col-7.d-flex.justify-content-center
-                h1 HỆ THỐNG TIÊM CHỦNG AN BÌNH
+                h1 HỆ THỐNG TIÊM CHỦNG AN BÌNH ADMIN
             .col-3.d-flex.justify-content-center
                 ul(id="nav-list").nav.align-items-center
                     if user
                         li.nav-item.dropdown
                             a(class="contact" href="#")= user.username
                             div(class="dropdown-content")
-                                a(class="dropdown-item" href="/danhsachhoadon") DANH SÁCH HOÁ ĐƠN
                                 a(class="dropdown-item" href="/logOut") ĐĂNG XUẤT
-                    else
-                        li.nav-item
-                            a(class="contact" href="/logIn") ĐĂNG NHẬP
-                        li.nav-item
-                            a(class="contact" href="/signUp") ĐĂNG KÝ      
-                div.col-12(id="search-bar")
-                    i(class="fas fa-search fa-lg" onclick="myFunction()")
-                    input(type="text" id="searchBar" placeholder="Search Here ..... !")
-                    div(id="search_List")
-                        ul(id="dishesList")
-
         //Tab
         .container.mt-5.d-flex.justify-content-center
             a(href="#")
@@ -64,13 +52,13 @@ html(lang="en")
             div.w-75.mb-5
                 .mt-3.mb-3
                     a(href="/dangkytiemchung")
-                        <button type="button" class="btn btn-primary btn-block">ĐĂNG KÝ TIÊM CHỦNG</button>
+                        <button type="button" class="btn btn-primary btn-block">PHÊ DUYỆT ĐĂNG KÝ TIÊM CHỦNG</button>
                 .mt-3.mb-3
                     a(href="/dangkymuavaccine")
-                        <button type="button" class="btn btn-primary btn-block">ĐĂNG KÝ MUA VACCINE</button>
+                        <button type="button" class="btn btn-primary btn-block">PHÊ DUYỆT ĐĂNG KÝ MUA VACCINE</button>
                 .mt-3.mb-3
                     a(href="/danhsachvaccine")
-                        <button type="button" class="btn btn-primary btn-block">DANH SÁCH VACCINE</button>
+                        <button type="button" class="btn btn-primary btn-block">TẠO DANH SÁCH VACCINE ĐẶT MỚI</button>
         //Footer
         .footer
             .container-fluid.row 

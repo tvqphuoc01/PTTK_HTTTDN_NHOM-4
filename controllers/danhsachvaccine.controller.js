@@ -1,5 +1,6 @@
 const userModels = require('../models/users.model');
 const vaccineModels = require('../models/vaccine.model');
+const billModels = require('../models/bills.model');
 
 const danhsachvaccineGet = async function(req, res) {
   // Check User Cookie

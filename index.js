@@ -50,7 +50,8 @@ const signUpRoute = require('./routers/signUp.router');
 const dangkymuavaccineRoute = require('./routers/dangkymuavaccine.router');
 const dangkytiemchungRoute = require('./routers/dangkytiemchung.router');
 const danhsachvaccineRoute = require('./routers/danhsachvaccine.router');
-
+const danhsachhoadonRoute = require('./routers/danhsachhoadon.router');
+const adminLogin = require('./routers/adminLogin.router');
 app.use('/', indexRoute);
 
 app.use('/logIn', loginRoute);
@@ -63,7 +64,15 @@ app.use('/dangkytiemchung', authMiddleware.authMiddleware, dangkytiemchungRoute)
 
 app.use('/dangkymuavaccine', authMiddleware.authMiddleware, dangkymuavaccineRoute);
 
+app.use('/danhsachhoadon', authMiddleware.authMiddleware, danhsachhoadonRoute);
+
 app.use('/danhsachvaccine', danhsachvaccineRoute);
+
+app.use('/admin', adminLogin);
+
+app.get('/adminDashboard', (req, res) => {
+  res.render('adminDashboard');
+});
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
