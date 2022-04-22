@@ -1,10 +1,37 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
+const randomstring = require('randomstring');
+const mongoose = require('mongoose');
 const app = express();
 const port = 3000;
 
+app.use(cookieParser(randomstring.generate()));
+require('dotenv').config();
+
 app.set('views', './views');
 app.set('view engine', 'pug');
+
+// Connect DATABASE
+mongoose.connect(process.env.MONGO_DB,
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    },
+);
+const db = mongoose.connection;
+
+db.on('error', () => console.error('Database connection failed'));
+db.once('open', async () => {
+  console.info('Database connection established...');
+});
+
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+}));
 
 app.use(express.static('public'));
 app.use(express.static('public/css'));
@@ -14,17 +41,17 @@ app.use(express.static('public/js'));
 
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.get('/', (req, res) => {
-  res.render('index');
-});
+const authMiddleware = require('./middleware/auth.middleware');
 
-app.get('/logIn', (req, res) => {
-  res.render('logIn');
-});
+const indexRoute = require('./routers/index.router');
+const loginRoute = require('./routers/login.router');
+const signUpRoute = require('./routers/signUp.router');
 
-app.get('/signUp', (req, res) => {
-  res.render('signUp');
-});
+app.use('/', indexRoute);
+
+app.use('/logIn', loginRoute);
+
+app.use('/signUp', signUpRoute);
 
 app.get('/dangkytiemchung', (req, res) => {
   res.render('dangkytiemchung');
@@ -32,6 +59,10 @@ app.get('/dangkytiemchung', (req, res) => {
 
 app.get('/dangkymuavaccine', (req, res) => {
   res.render('dangkymuavaccine');
+});
+
+app.get('/danhsachvaccine', (req, res) => {
+  res.render('danhsachvaccine');
 });
 
 app.listen(port, () => {
