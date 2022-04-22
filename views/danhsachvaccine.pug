@@ -66,24 +66,16 @@ head
                         </tr>
                     </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                            <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
+                            if vaccine
+                                - var n = 0;
+                                each value in vaccine
+                                    <tr>
+                                        th(scope="row")=n+1
+                                        td=vaccine[n]._id
+                                        td=vaccine[n].vaccineName
+                                        td=vaccine[n].quantity
+                                    </tr>
+                                    -n++;
                         </tbody>
                     </table>
 .footer

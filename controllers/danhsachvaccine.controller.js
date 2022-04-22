@@ -1,7 +1,7 @@
-/* eslint-disable no-unused-vars */
 const userModels = require('../models/users.model');
+const vaccineModels = require('../models/vaccine.model');
 
-const indexGet = async function(req, res) {
+const danhsachvaccineGet = async function(req, res) {
   // Check User Cookie
   // If userCookie === true => load User Info
   // Else Load -> raw Index page
@@ -9,13 +9,15 @@ const indexGet = async function(req, res) {
     const userData = await userModels.findOne(
         {_id: req.signedCookies.userId},
     );
+    const vaccineData = await vaccineModels.find();
     res.locals.user = userData;
-    res.render('index');
+    res.locals.vaccine = vaccineData;
+    res.render('danhsachvaccine');
   } else {
-    res.render('index');
+    res.render('danhsachvaccine');
   }
 };
 
 module.exports ={
-  indexGet,
+  danhsachvaccineGet,
 };

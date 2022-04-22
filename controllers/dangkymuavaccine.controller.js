@@ -1,7 +1,6 @@
-/* eslint-disable no-unused-vars */
 const userModels = require('../models/users.model');
 
-const indexGet = async function(req, res) {
+const dangkymuavaccineGet = async function(req, res) {
   // Check User Cookie
   // If userCookie === true => load User Info
   // Else Load -> raw Index page
@@ -10,12 +9,19 @@ const indexGet = async function(req, res) {
         {_id: req.signedCookies.userId},
     );
     res.locals.user = userData;
-    res.render('index');
+    res.render('dangkymuavaccine');
   } else {
-    res.render('index');
+    res.render('dangkymuavaccine');
   }
 };
 
+const dangkymuavaccinePost = async function(req, res) {
+  console.log(req.body);
+  res.redirect('/');
+};
+
+
 module.exports ={
-  indexGet,
+  dangkymuavaccineGet,
+  dangkymuavaccinePost,
 };

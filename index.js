@@ -45,7 +45,11 @@ const authMiddleware = require('./middleware/auth.middleware');
 
 const indexRoute = require('./routers/index.router');
 const loginRoute = require('./routers/login.router');
+const logoutRoute = require('./routers/logOut.router');
 const signUpRoute = require('./routers/signUp.router');
+const dangkymuavaccineRoute = require('./routers/dangkymuavaccine.router');
+const dangkytiemchungRoute = require('./routers/dangkytiemchung.router');
+const danhsachvaccineRoute = require('./routers/danhsachvaccine.router');
 
 app.use('/', indexRoute);
 
@@ -53,17 +57,13 @@ app.use('/logIn', loginRoute);
 
 app.use('/signUp', signUpRoute);
 
-app.get('/dangkytiemchung', (req, res) => {
-  res.render('dangkytiemchung');
-});
+app.use('/logOut', logoutRoute);
 
-app.get('/dangkymuavaccine', (req, res) => {
-  res.render('dangkymuavaccine');
-});
+app.use('/dangkytiemchung', authMiddleware.authMiddleware, dangkytiemchungRoute);
 
-app.get('/danhsachvaccine', (req, res) => {
-  res.render('danhsachvaccine');
-});
+app.use('/dangkymuavaccine', authMiddleware.authMiddleware, dangkymuavaccineRoute);
+
+app.use('/danhsachvaccine', danhsachvaccineRoute);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
