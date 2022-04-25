@@ -60,19 +60,6 @@ head
                 form(method='POST')
                     .input-group
                         input.input--style-1(type='text' placeholder='HỌ VÀ TÊN' name='name')
-                    .row.row-space
-                        .col-8
-                            .input-group
-                                input.js-datepicker(type='text' placeholder='NGÀY SINH' name='birthday')
-                                i.zmdi.zmdi-calendar-note.input-icon.js-btn-calendar
-                        .col-4
-                            .input-group
-                                .rs-select2.js-select-simple.select--no-search
-                                    select(name='gender')
-                                        option(disabled='disabled' selected='selected') GIỚI TÍNH
-                                        option Nam
-                                        option Nữ
-                                    .select-dropdown
                     .input-group
                         .rs-select2.js-select-simple.select--no-search
                             input.input--style-1(type='text' placeholder='SỐ ĐIỆN THOẠI' name='phone')
@@ -86,9 +73,9 @@ head
                                 .rs-select2.js-select-simple.select--no-search
                                     select(name='vaccine')
                                         option(disabled='disabled' selected='selected') CHỌN VACCINE MUỐN ĐẶT MUA
-                                        option VACCINE 01
-                                        option VACCINE 02
-                                        option VACCINE 03
+                                        option(value='VACINE 01') VACCINE 01
+                                        option(value='VACINE 02') VACCINE 02
+                                        option(value='VACINE 03') VACCINE 03
                                     .select-dropdown
                     .p-t-20
                         button.btn.btn--radius.btn--green(type='submit') Submit

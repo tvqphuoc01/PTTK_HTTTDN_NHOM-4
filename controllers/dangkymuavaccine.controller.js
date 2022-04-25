@@ -1,5 +1,5 @@
 const userModels = require('../models/users.model');
-
+const vaccineOrderModels = require('../models/vaccineOrder.model');
 const dangkymuavaccineGet = async function(req, res) {
   // Check User Cookie
   // If userCookie === true => load User Info
@@ -16,7 +16,15 @@ const dangkymuavaccineGet = async function(req, res) {
 };
 
 const dangkymuavaccinePost = async function(req, res) {
-  console.log(req.body);
+  const newUser = new vaccineOrderModels({
+    user: req.body.name,
+    userId: req.signedCookies.userId,
+    vaccineName: req.body.vaccine,
+    phone: req.body.phone,
+    address: req.body.address,
+    status: 0,
+  });
+  newUser.save();
   res.redirect('/');
 };
 

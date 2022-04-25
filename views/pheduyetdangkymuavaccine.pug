@@ -4,7 +4,7 @@ head
     meta(charset='UTF-8')
     meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
     // Title Page
-    title TIEM CHUNG AN BINH
+    title TIEM CHUNG AN BINH ADMIN
     // Icons font CSS
     link(href='mdi-font/css/material-design-iconic-font.min.css' rel='stylesheet' media='all')
     link(href='font-awesome-4.7/css/font-awesome.min.css' rel='stylesheet' media='all')
@@ -27,7 +27,7 @@ head
 .container-fluid.row.mainNavBar.fixed-top.w-100.navbar-expand-lg
     //Navbar
     .col-2.d-flex.justify-content-center
-        a(href="/")
+        a(href="/adminDashboard")
             img(src="logo.png" alt="AN BINH logo" width="50" height="50")
     .col-7.d-flex.justify-content-center
         h1 HỆ THỐNG TIÊM CHỦNG AN BÌNH
@@ -49,67 +49,46 @@ head
             div(id="search_List")
                 ul(id="dishesList")
 .page-wrapper.bg-blue.p-t-100.p-b-100.font-robo
-    .wrapper.wrapper--w680
+    .wrapper.wrapper--w780
         .card.card-1
             .card-heading.d-flex.justify-content-center
                 .img-container
                     img(src="logo.png" alt="AN BINH logo" width="300" height="300")
             .card-body
-                h2.title PHIẾU ĐĂNG KÝ TIÊM CHỦNG
-                h5.title Thông tin khách hàng
-                form(method='POST' action='/dangkytiemchung')
-                    .input-group
-                        input.input--style-1(type='text' placeholder='HỌ VÀ TÊN' name='name')
-                    .row.row-space
-                        .col-8
-                            .input-group
-                                input.js-datepicker(type='text' placeholder='NGÀY SINH' name='birthday')
-                                i.zmdi.zmdi-calendar-note.input-icon.js-btn-calendar
-                        .col-4
-                            .input-group
-                                .rs-select2.js-select-simple.select--no-search
-                                    select(name='gender')
-                                        option(disabled='disabled' selected='selected') GIỚI TÍNH
-                                        option Nam
-                                        option Nữ
-                                    .select-dropdown
-                    .input-group
-                        .rs-select2.js-select-simple.select--no-search
-                            input.input--style-1(type='text' placeholder='SỐ ĐIỆN THOẠI' name='phone')
-                    .input-group
-                        .rs-select2.js-select-simple.select--no-search
-                            input.input--style-1(type='text' placeholder='ĐỊA CHỈ' name='address')
-                    h5.title Chỉ điền thông tin 1 trong 2 phương thức tiêm
-                    h5.title Thông tin tiêm chủng (TIÊM THEO GÓI)
-                    .row.row-space
-                        .col-8
-                            .input-group
-                                input.js-datepicker(type='text' placeholder='NGÀY MONG MUỐN TIÊM' name='vaccineDateTheoGoi')
-                                i.zmdi.zmdi-calendar-note.input-icon.js-btn-calendar
-                    .input-group
-                        .rs-select2.js-select-simple.select--no-search
-                            select(name='goitiem')
-                                option(disabled='disabled' selected='selected') GÓI TIÊM
-                                option GÓI TIÊM 1
-                                option GÓI TIÊM 2
-                                option GÓI TIÊM 3
-                            .select-dropdown
-                    h5.title Thông tin tiêm chủng (TIÊM LẺ)
-                    .row.row-space
-                        .col-8
-                            .input-group
-                                input.js-datepicker(type='text' placeholder='NGÀY MONG MUỐN TIÊM' name='vaccineDateTiemLe')
-                                i.zmdi.zmdi-calendar-note.input-icon.js-btn-calendar
-                    .input-group
-                        .rs-select2.js-select-simple.select--no-search
-                            select(name='vaccine')
-                                option(disabled='disabled' selected='selected') VACCINE
-                                option VACCINE 1
-                                option VACCINE 2
-                                option VACCINE 3
-                            .select-dropdown
-                    .p-t-20
-                        button.btn.btn--radius.btn--green(type='submit') Submit
+                h2.title DANH SÁCH ĐĂNG KÝ MUA VACCINE
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th scope="col">STT</th>
+                        <th scope="col">Mã đơn đăng ký</th>
+                        <th scope="col">Mã khách hàng</th>
+                        <th scope="col">Tên khách hàng</th>
+                        <th scope="col">Tên Vaccine</th>
+                        <th scope="col">Tình trạng</th>
+                        </tr>
+                    </thead>
+                        <tbody>
+                            if vaccine
+                                - var n = 0;
+                                each value in vaccine
+                                    <tr>
+                                        th(scope="row")=n+1
+                                        td=vaccine[n]._id
+                                        td=vaccine[n].userId
+                                        td=vaccine[n].user
+                                        td=vaccine[n].vaccineName
+                                        if vaccine[n].status === 0
+                                            td='Chưa xác nhận'
+                                        else
+                                            td='Đã xác nhận'
+                                        td 
+                                            button.btn.btn--radius.btn--green(type='submit') XÁC NHẬN
+                                        td 
+                                            button.btn.btn--radius.btn--red(type='submit') HUỶ
+                                    </tr>
+                                    -n++;
+                        </tbody>
+                    </table>
 .footer
     .container-fluid.row 
         .col-6

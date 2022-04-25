@@ -51,6 +51,9 @@ const dangkymuavaccineRoute = require('./routers/dangkymuavaccine.router');
 const dangkytiemchungRoute = require('./routers/dangkytiemchung.router');
 const danhsachvaccineRoute = require('./routers/danhsachvaccine.router');
 const danhsachhoadonRoute = require('./routers/danhsachhoadon.router');
+const pheduyetdangkytiemchungRoute = require('./routers/pheduyetdangkytiemchung.router');
+const pheduyetdangkymuavaccineRoute = require('./routers/pheduyetdangkymuavaccine.router');
+
 const adminLogin = require('./routers/adminLogin.router');
 app.use('/', indexRoute);
 
@@ -69,6 +72,10 @@ app.use('/danhsachhoadon', authMiddleware.authMiddleware, danhsachhoadonRoute);
 app.use('/danhsachvaccine', danhsachvaccineRoute);
 
 app.use('/admin', adminLogin);
+
+app.use('/pheduyetdangkytiemchung', pheduyetdangkytiemchungRoute);
+
+app.use('/pheduyetdangkymuavaccine', pheduyetdangkymuavaccineRoute);
 
 app.get('/adminDashboard', (req, res) => {
   res.render('adminDashboard');
